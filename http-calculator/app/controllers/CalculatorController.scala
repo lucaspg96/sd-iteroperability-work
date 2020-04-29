@@ -5,22 +5,15 @@ import models.expression.Expression
 import play.api.libs.json.{JsNumber, JsValue}
 import play.api.mvc._
 
-/**
- * This controller creates an `Action` to handle HTTP requests to the
- * application's home page.
- */
+
 @Singleton
 class CalculatorController @Inject()(cc: ControllerComponents) extends AbstractController(cc) {
 
-  /**
-   * Create an Action to render an HTML page.
-   *
-   * The configuration in the `routes` file means that this method
-   * will be called when the application receives a `GET` request with
-   * a path of `/`.
-   */
+  // Função para processar requisição
   def calc(): Action[JsValue] = Action(parse.json) { implicit request: Request[JsValue] =>
+    // Recupero a expressão, em JSON, no corpo da requisição e transformo em um Objeto de Expressão
     val expr = request.body.as[Expression]
+    // Respondo a requisição com 200 e o valor da expressão
     Ok(JsNumber(expr.value))
   }
   

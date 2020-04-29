@@ -1,37 +1,22 @@
-# Play Hello World Web Tutorial for Scala
+# Exemplo de Calculadora HTTP usando Json
 
-To follow the steps in this tutorial, you will need the correct version of Java and sbt. The template requires:
+Este exemplo foi feito usando Play Framework, sendo construido sobre seu projeto base de Hello World.
 
-* Java Software Developer's Kit (SE) 1.8 or higher
-* sbt 1.3.4 or higher. Note: if you downloaded this project as a zip file from <https://developer.lightbend.com>, the file includes an sbt distribution for your convenience.
+## Servidor
 
-To check your Java version, enter the following in a command window:
+Para executar o servidor, basta rodar o seguinte comando:
 
-```bash
-java -version
-```
+```./sbt httpCalculator/run```
 
-To check your sbt version, enter the following in a command window:
+Em seguida, o `sbt` fará o download das dependencias, compilar o código e subir o servidor na porta `9000`
 
-```bash
-sbt sbtVersion
-```
+Por ser uma aplicação em Play, a primeira requsição será mais demorada, uma vez que seus controladores são *lazy*
 
-If you do not have the required versions, follow these links to obtain them:
+## Cliente
+O cliente que consome o servidor é um `Object` executável localizado em
+```http-calculator/app/clients/CalculatorClient.scala```.  O comando é:
 
-* [Java SE](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
-* [sbt](http://www.scala-sbt.org/download.html)
+```./sbt "httpCalculator/runMain clients.CalculatorClient"```
 
-## Build and run the project
-
-This example Play project was created from a seed template. It includes all Play components and an Akka HTTP server. The project is also configured with filters for Cross-Site Request Forgery (CSRF) protection and security headers.
-
-To build and run the project:
-
-1. Use a command window to change into the example project directory, for example: `cd play-scala-hello-world-web`
-
-2. Build the project. Enter: `sbt run`. The project builds and starts the embedded HTTP server. Since this downloads libraries and dependencies, the amount of time required depends partly on your connection's speed.
-
-3. After the message `Server started, ...` displays, enter the following URL in a browser: <http://localhost:9000>
-
-The Play application responds: `Welcome to the Hello World Tutorial!`
+Nele deverá ser escrito o Json da expressão e, ao executar, a requisição será disparada para o servidor e,
+quando o mesmo responder, sua resposta será apresentada.
