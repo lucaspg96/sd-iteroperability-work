@@ -54,7 +54,8 @@ object CalculatorClient extends App {
       // Apresento o resultado
       println(s"$expr = "+answer)
       // Encerro o sistema de atores e o código encerra
-      system.terminate().map(_ => System.exit(0))
+      system.terminate().map{_ =>
+        scala.sys.exit()}
     }
     // Caso dê algum erro na requisição
     .recover{
