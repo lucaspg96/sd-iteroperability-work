@@ -10,10 +10,18 @@ lazy val httpCalculator = (project in file("http-calculator"))
   .enablePlugins(PlayScala)
   .settings(
     name := """http-calculator-example""",
-    //    libraryDependencies ++= Seq(
-    //      guice,
-    //      "org.scalatestplus.play" %% "scalatestplus-play" % "5.0.0" % Test
-    //    ),
+    scalacOptions ++= Seq(
+      "-feature",
+      "-deprecation",
+      "-Xfatal-warnings"
+    )
+  )
+
+lazy val socketCalculator = (project in file("socket-calculator"))
+  .settings(Settings.commonSettings:_*)
+  .dependsOn(commons)
+  .settings(
+    name := """http-socket-example""",
     scalacOptions ++= Seq(
       "-feature",
       "-deprecation",
