@@ -5,4 +5,4 @@ Repositório criado para o trabalho de interoperabilidade da disciplina de Siste
 
 Pra executar uma classe via `sbt`, basta utilizar o seguinte comando:
 
-```./sbt "<project>>/runMain <main.object.package>.<mainObject>"```
+```./sbt "<project>/runMain <main.object.package>.<mainObject>"```
